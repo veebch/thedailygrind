@@ -8,3 +8,5 @@ A very minimal UX centers around a memory that makes it possible to scroll throu
 # Config
 
 Parameters that can be used for tailoring the code, or applying it to another stepless machine
+
+     rshell --buffer-size=512 -p /dev/ttyACM0
