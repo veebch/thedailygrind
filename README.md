@@ -1,14 +1,16 @@
 # The Daily Grind
-An open-source coffee grinder accessory to aid moving between grind sizes. Connected to a Bezzera BB05, although it whould be adaptable to others that use a similar mechanism (stepless adjustment, screw on wheel)
+An open-source coffee grinder accessory to aid moving between grind sizes. Connected to a Bezzera BB05, although it should be adaptable to other grinders that use a similar mechanism (stepless adjustment)
 
 # Hardware
 
 - SSD1351 OLED
-- Waveshare DC motor board for Pico
+- Waveshare DC motor board for Pico (jumpers soldered for IC1 to avoid screen issues due to pin use)
 - DC motor
 - Rotaty Encoder switch
 
-The OLED uses micropython nanoo GUI and a SSD1351 128x128 screen. A stepper motor. A rotary switch and a Pi Pico.
+# Code
+
+The OLED uses micropython-nano-gui and a SSD1351 128x128 screen.
 
 A very minimal UX centers around a memory that makes it possible to scroll through the last few grinds.
 
