@@ -8,7 +8,7 @@ This is an attempt to smooth out the workflow and an excuse to play with a pi pi
 
 An open-source coffee grinder accessory to aid moving between grind sizes. Connected to a Bezzera BB05, although it should be adaptable to other grinders that use a similar mechanism (stepless adjustment)
 
-A very (very) minimal UX centers around a memory of the last 3 grinds.
+A very (very) minimal UX centers around a numeric value for the grind size and a display of that value for the last 3 grinds. 
 
 # Hardware
 
