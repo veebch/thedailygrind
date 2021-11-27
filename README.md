@@ -8,9 +8,11 @@ This is an attempt to smooth out the workflow and an excuse to play with a pi pi
 
 An open-source coffee grinder accessory to aid moving between grind sizes. Connected to a Bezzera BB05, although it should be adaptable to other grinders that use a similar mechanism (stepless adjustment)
 
+A very (very) minimal UX centers around a memory of the last 3 grinds.
+
 # Hardware
 
-- Screen: SSD1351 OLED
+- Screen: SSD1351 OLED 128x128 screen
 - Motor Driver: Waveshare DC motor board for Pico (jumpers soldered for I2C 1 to avoid screen issues due to pin use)
 - Motor: DC motor
 - Controller: Rotaty Encoder switch
@@ -18,13 +20,7 @@ An open-source coffee grinder accessory to aid moving between grind sizes. Conne
 
 # Code
 
-The OLED uses micropython-nano-gui and a SSD1351 128x128 screen.
-
-A very (very) minimal UX centers around a memory of the last 3 grinds.
-
-# Config
-
-Parameters that can be used for tailoring the code, or applying it to another stepless machine
+Micropython on the Pico. Clone this repsitory and copy the files onto the Pico.
 
 # Gettings files onto Pico
 
@@ -32,6 +28,12 @@ Parameters that can be used for tailoring the code, or applying it to another st
      
  you can then recursively copy the files across.
      
+
+# Config
+
+Parameters that can be used for tailoring the code, or applying it to another stepless machine
+
+
 # To Do
 
 Calibration. Perhaps using a limit switch. 
