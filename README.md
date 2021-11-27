@@ -3,10 +3,10 @@ An open-source coffee grinder accessory to aid moving between grind sizes. Conne
 
 # Hardware
 
-SSD1351 OLED
-Waveshare DC motor board for Pico
-DC motor
-Rotaty Encoder switch
+- SSD1351 OLED
+- Waveshare DC motor board for Pico
+- DC motor
+- Rotaty Encoder switch
 
 The OLED uses micropython nanoo GUI and a SSD1351 128x128 screen. A stepper motor. A rotary switch and a Pi Pico.
 
