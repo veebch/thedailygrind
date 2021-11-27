@@ -1,4 +1,11 @@
+
+
+Problem statement: Moving between grind sizes for different brew methods can be a frustration on some grinders. Remembering where the last grind was is not always easy.
+
+This is an attempt to smooth out the workflow and an excuse to play with a pi pico microcontroller, which has been on the to-do list for a while. 
+
 # The Daily Grind
+
 An open-source coffee grinder accessory to aid moving between grind sizes. Connected to a Bezzera BB05, although it should be adaptable to other grinders that use a similar mechanism (stepless adjustment)
 
 # Hardware
@@ -12,7 +19,7 @@ An open-source coffee grinder accessory to aid moving between grind sizes. Conne
 
 The OLED uses micropython-nano-gui and a SSD1351 128x128 screen.
 
-A very minimal UX centers around a memory that makes it possible to scroll through the last few grinds.
+A very (very) minimal UX centers around a memory of the last 3 grinds.
 
 # Config
 
