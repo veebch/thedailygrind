@@ -11,7 +11,7 @@ An open-source coffee grinder accessory to aid moving between grind sizes. Conne
 # Hardware
 
 - SSD1351 OLED
-- Waveshare DC motor board for Pico (jumpers soldered for IC1 to avoid screen issues due to pin use)
+- Waveshare DC motor board for Pico (jumpers soldered for I2C 1 to avoid screen issues due to pin use)
 - DC motor
 - Rotaty Encoder switch
 
