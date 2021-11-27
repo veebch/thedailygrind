@@ -1,4 +1,4 @@
-
+[![YouTube Channel Views](https://img.shields.io/youtube/channel/views/UCz5BOU9J9pB_O0B8-rDjCWQ?label=YouTube&style=social)](https://www.youtube.com/channel/UCz5BOU9J9pB_O0B8-rDjCWQ)
 
 Problem statement: Moving between grind sizes for different brew methods can be a frustration on some grinders. Remembering where the last grind was is not always easy.
 
