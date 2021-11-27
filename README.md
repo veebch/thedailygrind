@@ -29,6 +29,8 @@ Parameters that can be used for tailoring the code, or applying it to another st
 
      rshell --buffer-size=512 -p /dev/ttyACM0
      
+ you can then recursively copy the files across.
+     
 # To Do
 
 Calibration. Perhaps using a limit switch. 
