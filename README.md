@@ -3,7 +3,7 @@
 
 [![YouTube Channel Views](https://img.shields.io/youtube/channel/views/UCz5BOU9J9pB_O0B8-rDjCWQ?label=YouTube&style=social)](https://www.youtube.com/channel/UCz5BOU9J9pB_O0B8-rDjCWQ)
 
-**Problem statement:** Moving between grind sizes for different brew methods can be a mild frustration on some coffee grinders. Remembering where the last grind was, is not always easy.
+**Problem statement:** Moving between grind sizes for different brew methods can be a mild frustration on some coffee grinders. Remembering where the last grind was is not always easy.
 
 This is an attempt to smooth out the workflow and an excuse to play with a pi pico microcontroller, which has been on the to-do list for a while. 
 
