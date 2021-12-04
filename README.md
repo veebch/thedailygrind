@@ -1,7 +1,7 @@
 
 [![Video](https://img.youtube.com/vi/dQ8bjJROrDo/0.jpg)](https://www.youtube.com/watch?v=dQ8bjJROrDo)
 
-[![YouTube Channel Views](https://img.shields.io/youtube/channel/views/UCz5BOU9J9pB_O0B8-rDjCWQ?label=YouTube&style=social)](https://www.youtube.com/channel/UCz5BOU9J9pB_O0B8-rDjCWQ)
+[![YouTube Channel Views](https://img.shields.io/youtube/channel/views/E5sn0s1Zz4U?label=YouTube&style=social)](https://www.youtube.com/channel/E5sn0s1Zz4U)
 
 **Problem statement:** Moving between grind sizes for different brew methods can be a mild frustration on some coffee grinders. Remembering where the last grind was is not always easy.
 
