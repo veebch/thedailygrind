@@ -39,7 +39,9 @@ Parameters that can be used for tailoring the code, or applying it to another st
 
 # To Do
 
-Calibration. Perhaps using a limit switch. 
+Calibration. Perhaps using a limit switch.
+Insert coffee smarts into code. Collect additional information.
+Build a grinder from scratch. 
 
 # License 
 
