@@ -27,7 +27,7 @@ Micropython on the Pico. Clone this repsitory onto your computer:
 
      git clone https://github.com/veebch/thedailygrind
 
-and copy the files onto the Pico:
+and copy the files onto the Pico (connected to your computer via USB):
 
      sudo ampy -p /dev/ttyACM0 put ./
 
