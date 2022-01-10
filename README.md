@@ -32,12 +32,10 @@ and copy the files onto the Pico.
      sudo ampy -p /dev/ttyACM0 put ./
      
  you can then recursively copy the files across.
-     
 
-# Config
+# Running
 
-Parameters that can be used for tailoring the code, or applying it to another stepless machine
-
+The code is saved as `main.py` so will automatically run when you power up the Pico
 
 # To Do
 
