@@ -45,6 +45,12 @@ The code is saved as `main.py`, so it will automatically run when you power up t
 - Collect additional information
 - Stretch goal: Build a grinder from scratch
 
+# Contributing to the Code
+
+If you look at this and feel like you can make it better please fork the repository and use a feature branch. Pull requests are welcome and encouraged.
+
+If you have some coffee expertise that you think could be embedded in the code then raise an issue on GitHub or mail us.
+ 
 # License 
 
 GPL 3.0
