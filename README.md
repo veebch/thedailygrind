@@ -3,7 +3,7 @@
 
 [![YouTube Channel Views](https://img.shields.io/youtube/channel/views/UCz5BOU9J9pB_O0B8-rDjCWQ?label=YouTube&style=social)](https://www.youtube.com/channel/UCz5BOU9J9pB_O0B8-rDjCWQ)
 
-**Problem statement:** Moving between grind sizes for different brew methods can be a mild frustration on some coffee grinders. Remembering the location of the previous grind is not always easy.
+Moving between grind sizes for different brew methods can be a mild frustration on some coffee grinders. Remembering the location of the previous grind is not always easy.
 
 # The Daily Grind
 
