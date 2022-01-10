@@ -21,6 +21,8 @@ Turn the rotary encoder to select a grind number, press to move to that number.
 - Controller: Rotaty Encoder switch
 - Wires, lots of wires
 
+The connection pins for all of the parts interfacing with the Pico are within the code.
+
 # Install
 
 Once you've installed Micropython on the Pico. Clone this repsitory onto your computer:
