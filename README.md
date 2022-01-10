@@ -38,6 +38,7 @@ The code is saved as `main.py`, so it will automatically run when you power up t
 
 # To Do
 
+- Tare function
 - Calibration, perhaps using a precision limit switch. 
 - Refinement of travel accuracy following measurement (initial tests show negligible drift).
 - Insert coffee smarts into code. Collect additional information.
