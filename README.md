@@ -27,7 +27,7 @@ Micropython on the Pico. Clone this repsitory and copy the files onto the Pico.
 
 # Gettings files onto Pico
 
-     rshell --buffer-size=512 -p /dev/ttyACM0
+     sudo ampy -p /dev/ttyACM0 put ./
      
  you can then recursively copy the files across.
      
