@@ -7,7 +7,7 @@
 
 # The Daily Grind
 
-An open-source coffee grinder accessory to aid moving between grind sizes. Prototyped on a Bezzera BB05, although it should be adaptable to other grinders that use a similar mechanism (stepless adjustment). Units are currently non-dimensional (no units, made up).
+An open-source coffee grinder accessory to aid moving between grind sizes and recalling recent grinds. Prototyped on a Bezzera BB05, although it should be adaptable to other grinders that use a similar mechanism (stepless adjustment). Units are currently non-dimensional (no units, made up).
 
 A minimal UX centers around a numeric value for the grind size and a display of that value for the last 3 grinds. 
 
