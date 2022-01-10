@@ -23,7 +23,13 @@ A very (very) minimal UX centers around a numeric value for the grind size and a
 
 # Code
 
-Micropython on the Pico. Clone this repsitory and copy the files onto the Pico.
+Micropython on the Pico. Clone this repsitory 
+
+     git clone https://github.com/veebch/thedailygrind
+
+and copy the files onto the Pico.
+
+
 
 # Gettings files onto Pico
 
