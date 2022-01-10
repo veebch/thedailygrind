@@ -5,8 +5,6 @@
 
 **Problem statement:** Moving between grind sizes for different brew methods can be a mild frustration on some coffee grinders. Remembering the location of the previous grind is not always easy.
 
-This is an attempt to smooth out the workflow and an excuse to play with a pi pico microcontroller, which has been on the to-do list for a while. 
-
 # The Daily Grind
 
 An open-source coffee grinder accessory to aid moving between grind sizes. Prototyped on a Bezzera BB05, although it should be adaptable to other grinders that use a similar mechanism (stepless adjustment). Units are currentlynon-dimensional (no units, made up).
