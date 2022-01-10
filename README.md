@@ -35,7 +35,7 @@ and copy the files onto the Pico.
 
 # Running
 
-The code is saved as `main.py` so will automatically run when you power up the Pico
+The code is saved as `main.py`, so it will automatically run when you power up the Pico.
 
 # To Do
 
