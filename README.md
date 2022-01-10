@@ -21,17 +21,13 @@ A very (very) minimal UX centers around a numeric value for the grind size and a
 - Controller: Rotaty Encoder switch
 - Wires, lots of wires
 
-# Code
+# Install
 
 Micropython on the Pico. Clone this repsitory 
 
      git clone https://github.com/veebch/thedailygrind
 
 and copy the files onto the Pico.
-
-
-
-# Gettings files onto Pico
 
      sudo ampy -p /dev/ttyACM0 put ./
      
