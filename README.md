@@ -23,15 +23,14 @@ Turn the rotary encoder to select a grind number, press to move to that number.
 
 # Install
 
-Micropython on the Pico. Clone this repsitory 
+Micropython on the Pico. Clone this repsitory onto your computer:
 
      git clone https://github.com/veebch/thedailygrind
 
-and copy the files onto the Pico.
+and copy the files onto the Pico:
 
      sudo ampy -p /dev/ttyACM0 put ./
-     
- you can then recursively copy the files across.
+
 
 # Running
 
