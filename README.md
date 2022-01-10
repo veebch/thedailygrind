@@ -17,8 +17,9 @@ Turn the rotary encoder to select a grind number, press to move to that number.
 
 - Screen: SSD1351 OLED 128x128 screen
 - Motor Driver: Waveshare DC motor board for Pico (jumpers soldered for I2C 1 to avoid screen issues due to pin use)
-- Motor: DC motor
+- Motor: [DC motor](https://www.amazon.de/gp/product/B0824V7YGT)
 - Controller: Rotaty Encoder switch
+- [Timing belt and teeth](https://www.amazon.de/gp/product/B09KGJXQ4N)
 - Wires, lots of wires
 
 The connection pins for all of the parts interfacing with the Pico are within the code.
