@@ -23,7 +23,7 @@ Turn the rotary encoder to select a grind number, press to move to that number.
 
 # Install
 
-Micropython on the Pico. Clone this repsitory onto your computer:
+Once you've installed Micropython on the Pico. Clone this repsitory onto your computer:
 
      git clone https://github.com/veebch/thedailygrind
 
