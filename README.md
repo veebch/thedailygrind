@@ -39,7 +39,7 @@ Parameters that can be used for tailoring the code, or applying it to another st
 
 # To Do
 
-- Calibration, perhaps using a limit switch. Refinement of travel accuracy.
+- Calibration, perhaps using a precision limit switch. Refinement of travel accuracy following measurement. Initial tests show negligible drift.
 - Insert coffee smarts into code. Collect additional information.
 - Build a grinder from scratch. 
 
