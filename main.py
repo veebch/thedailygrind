@@ -9,15 +9,11 @@ import gui.fonts.freesans20 as freesans20
 import gui.fonts.quantico40 as quantico40
 from gui.core.writer import CWriter
 import time
-from machine import Pin,I2C 
+import machine 
 from rp2 import PIO, StateMachine, asm_pio
 import sys
-
 import time
-
 import math
-
-import machine
 import gc
 
 # *** Choose your color display driver here ***
@@ -155,26 +151,6 @@ class MotorDriver():
         mPin = self.MotorPin.index(motor)
         self.pwm.setServoPulse(self.MotorPin[mPin+1], 0)
         
-# define encoder pins 
-
-switch = Pin(4, mode=Pin.IN, pull = Pin.PULL_UP) # inbuilt switch on the rotary encoder, ACTIVE LOW
-outA = Pin(2, mode=Pin.IN) # Pin CLK of encoder
-outB = Pin(3, mode=Pin.IN) # Pin DT of encoder
-
-ledPin = Pin(25, mode = Pin.OUT, value = 0) # Onboard led on GPIO 25
-
-
-# define global variables
-counter = 0   # counter updates when encoder rotates
-direction = "" # empty string for registering direction change
-outA_last = 0 # registers the last state of outA pin / CLK pin
-outA_current = 0 # registers the current state of outA pin / CLK pin
-
-button_last_state = False # initial state of encoder's button 
-button_current_state = "" # empty string ---> current state of button
-
-# Read the last state of CLK pin in the initialisaton phase of the program 
-outA_last = outA.value() # lastStateCLK
 
 # interrupt handler function (IRQ) for CLK and DT pins
 def encoder(pin):
@@ -269,39 +245,60 @@ def doaspin(offset, direction):
         m.MotorRun('MA', 'backward', speed,runfor)
     return
 
-# Attach interrupt to Pins
-""" If you need to write a program which triggers an interrupt whenever
-    a pin changes, without caring whether it’s rising or falling,
-    you can combine the two triggers using a pipe or
-    a vertical bar symbol ( | ) . Logical AND """
+
+# define encoder pins 
+
+switch = machine.Pin(4, mode=machine.Pin.IN, pull = machine.Pin.PULL_UP) # inbuilt switch on the rotary encoder, ACTIVE LOW
+outA = machine.Pin(2, mode=machine.Pin.IN) # Pin CLK of encoder
+outB = machine.Pin(3, mode=machine.Pin.IN) # Pin DT of encoder
+
+ledPin = machine.Pin(25, mode = machine.Pin.OUT, value = 0) # Onboard led on GPIO 25
+
+
+# define global variables
+counter = 0   # counter updates when encoder rotates
+direction = "" # empty string for registering direction change
+outA_last = 0 # registers the last state of outA pin / CLK pin
+outA_current = 0 # registers the current state of outA pin / CLK pin
+
+button_last_state = False # initial state of encoder's button 
+button_current_state = "" # empty string ---> current state of button
+
+# Read the last state of CLK pin in the initialisaton phase of the program 
+outA_last = outA.value() # lastStateCLK
+
 
 # attach interrupt to the outA pin ( CLK pin of encoder module )
-outA.irq(trigger = Pin.IRQ_RISING | Pin.IRQ_FALLING,
+outA.irq(trigger = machine.Pin.IRQ_RISING | machine.Pin.IRQ_FALLING,
               handler = encoder)
 
 # attach interrupt to the outB pin ( DT pin of encoder module )
-outB.irq(trigger = Pin.IRQ_RISING | Pin.IRQ_FALLING ,
+outB.irq(trigger = machine.Pin.IRQ_RISING | machine.Pin.IRQ_FALLING ,
               handler = encoder)
 
 # attach interrupt to the switch pin ( SW pin of encoder module )
-switch.irq(trigger = Pin.IRQ_FALLING,
+switch.irq(trigger = machine.Pin.IRQ_FALLING,
            handler = button)
-
 
 # Main Logic
 pin=0
 stack = []
 
 # Initialise stack from saved values in case power dropped
-file = open ("lastgrinds.txt", "r+")
-stackstr = file.read()
-file.close()
-
-stackarr = str(stackstr)[1:-1].split(',')
-
-stack.append(int(stackarr[0]))
-stack.append(int(stackarr[1]))
-stack.append(int(stackarr[2]))
+try:
+    file = open ("lastgrinds.txt", "r+")
+    stackstr = file.read()
+    file.close()
+    stackarr = str(stackstr)[1:-1].split(',')
+    stack.append(int(stackarr[0]))
+    stack.append(int(stackarr[1]))
+    stack.append(int(stackarr[2]))
+    counter=int(stackarr[2])
+except:
+    # No old grinds file, initialise to zero
+    stack.append(0)
+    stack.append(0)
+    stack.append(0)
 
 while True:
     counter=encoder(pin)  
