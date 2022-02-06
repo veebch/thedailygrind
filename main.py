@@ -60,7 +60,6 @@ class PCA9685:
     __ALLLED_OFF_L       = 0xFC
     __ALLLED_OFF_H       = 0xFD
 
-# soldered jumpers to switch to IC21 
     def __init__(self, address=0x40, debug=False):
         self.i2c = I2C(1, scl=Pin(7), sda=Pin(6), freq=100000)
         self.address = address
@@ -207,7 +206,7 @@ def encoder(pin):
     # update the last state of outA pin / CLK pin with the current state
     outA_last = outA_current
     counter=min(100,counter)
-    counter=max(0,counter)
+    counter=max(-100,counter)
     return(counter)
     
 
@@ -219,6 +218,7 @@ def button(pin):
     global stack
     if button_current_state != button_last_state:
         print("Button is Pressed\n")
+
         number=int(encoder(pin))
         if stack[2]!=number:
             stack.pop(0)
@@ -232,6 +232,10 @@ def button(pin):
             print("Change",change)  
             doaspin(change, dir)
         time.sleep(.1)
+        
+        file = open ("lastgrinds.txt", "w+")  #writes to file, even if it doesnt exist
+        file.write(str(stack))
+        file.close()
         
         button_last_state = button_current_state
     return
@@ -255,13 +259,14 @@ def displaynum(num):
 def doaspin(offset, direction):
     m = MotorDriver()
     print('offset:',float(offset))
-    speed=100     
+    speed=100
+    runfor=offset/3
     if direction=='ccw':
         print("motor A backward, speed ",speed,"%, Run for ",offset,"S, then stop")
-        m.MotorRun('MA', 'backward', speed,offset )
+        m.MotorRun('MA', 'forward', speed,runfor )
     else:
         print("motor A forward, speed ",speed,"%, Run for ",offset,"S, then stop")
-        m.MotorRun('MA', 'forward', speed,offset )
+        m.MotorRun('MA', 'backward', speed,runfor)
     return
 
 # Attach interrupt to Pins
@@ -286,9 +291,17 @@ switch.irq(trigger = Pin.IRQ_FALLING,
 # Main Logic
 pin=0
 stack = []
-stack.append(0)
-stack.append(0)
-stack.append(0)
+
+# Initialise stack from saved values in case power dropped
+file = open ("lastgrinds.txt", "r+")
+stackstr = file.read()
+file.close()
+
+stackarr = str(stackstr)[1:-1].split(',')
+
+stack.append(int(stackarr[0]))
+stack.append(int(stackarr[1]))
+stack.append(int(stackarr[2]))
 
 while True:
     counter=encoder(pin)  
