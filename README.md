@@ -9,9 +9,11 @@ Moving between grind sizes for different brew methods can be a mild frustration 
 
 An open-source coffee grinder accessory to aid moving between grind sizes, and recalling recent grinds. Prototyped on a Bezzera BB05, although it should be adaptable to other grinders that use a similar mechanism (stepless adjustment). Units are currently non-dimensional (no units, made up).
 
-A minimal user interface centers around a numeric value for the grind size and a display of that numeric value for the last 3 grinds. 
+- A minimal user interface centers around a numeric value for the grind size and a display of that numeric value for the last 3 grinds. 
 
-Turn the rotary encoder to select a grind number, press to move to that number.
+- Turn the rotary encoder to select a grind number, press to move to that number.
+
+- Tare function - long press rotary encoder to zero (there is a visual setpoint to do this at).
 
 # Hardware
 
@@ -41,7 +43,6 @@ The code is saved as `main.py`, so it will automatically run when you power up t
 
 # To Do
 
-- Tare function (and persistent logging via storage of grinds in a file)
 - Calibration, perhaps using a precision limit switch
 - Collect additional information
 - Stretch goal: Build a grinder from scratch
