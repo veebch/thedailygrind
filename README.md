@@ -43,8 +43,8 @@ The code is saved as `main.py`, so it will automatically run when you power up t
 
 # To Do
 
-- Calibration, perhaps using a precision limit switch
-- Collect additional information
+- Auto-calibration, perhaps using a precision limit switch
+- Collect additional information via UI
 - Stretch goal: Build a grinder from scratch
 
 # Contributing to the Code
