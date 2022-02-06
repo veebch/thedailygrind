@@ -9,7 +9,7 @@ import gui.fonts.freesans20 as freesans20
 import gui.fonts.quantico40 as quantico40
 from gui.core.writer import CWriter
 import time
-import machine 
+from machine import Pin, I2C, SPI
 from rp2 import PIO, StateMachine, asm_pio
 import sys
 import time
@@ -25,18 +25,18 @@ from drivers.ssd1351.ssd1351 import SSD1351 as SSD
 
 height = 128  # height = 128 # 1.5 inch 128*128 display
 
-pdc = machine.Pin(20, machine.Pin.OUT, value=0)
-pcs = machine.Pin(17, machine.Pin.OUT, value=1)
-prst = machine.Pin(21, machine.Pin.OUT, value=1)
-spi = machine.SPI(0,
+pdc = Pin(20, Pin.OUT, value=0)
+pcs = Pin(17, Pin.OUT, value=1)
+prst = Pin(21, Pin.OUT, value=1)
+spi = SPI(0,
                   baudrate=10000000,
                   polarity=1,
                   phase=1,
                   bits=8,
-                  firstbit=machine.SPI.MSB,
-                  sck=machine.Pin(18),
-                  mosi=machine.Pin(19),
-                  miso=machine.Pin(16))
+                  firstbit=SPI.MSB,
+                  sck=Pin(18),
+                  mosi=Pin(19),
+                  miso=Pin(16))
 gc.collect()  # Precaution before instantiating framebuf
 ssd = SSD(spi, pcs, pdc, prst, height)  # Create a display instance
 
@@ -186,31 +186,49 @@ def encoder(pin):
     return(counter)
     
 
-# interrupt handler function (IRQ) for SW (switch) pin
+# interrupt handler function (IRQ) for SW (switch) pin, serves as a Tare function
 def button(pin):
     # get global variable
     global button_last_state
     global button_current_state
     global stack
+    global counter
+    global oldcounter 
     if button_current_state != button_last_state:
         print("Button is Pressed\n")
-        number=int(encoder(pin))
-        if stack[2]!=number:
+        number=int(encoder(0))
+        if stack[2]!=0:
             stack.pop(0)
-            stack.append(number)
-            change=stack[2]-stack[1]
-            print("Change",change)           
-            dir='ccw'
-            if stack[1]-stack[2]>0:
-                change=stack[1]-stack[2]
-                dir='cw'
-            print("Change",change)  
-            doaspin(change, dir)
+            stack.append(0)
+            counter = 0
+            oldcounter = 0
         time.sleep(.1)        
         file = open ("lastgrinds.txt", "w+")  #writes to file, even if it doesnt exist
         file.write(str(stack))
         file.close()       
         button_last_state = button_current_state
+    return
+
+def adjust(pin):
+    # get global variable
+    global stack
+    print("Adjusting\n")
+    number=int(encoder(0))
+    if stack[2]!=number:
+        stack.pop(0)
+        stack.append(number)
+        change=stack[2]-stack[1]
+        print("Change",change)           
+        dir='ccw'
+        if stack[1]-stack[2]>0:
+            change=stack[1]-stack[2]
+            dir='cw'
+        print("Change",change)  
+        doaspin(change, dir)
+    time.sleep(.1)        
+    file = open ("lastgrinds.txt", "w+")  #writes to file, even if it doesnt exist
+    file.write(str(stack))
+    file.close()       
     return
 
 def displaynum(num):
@@ -245,10 +263,10 @@ def doaspin(offset, direction):
 
 # define encoder pins 
 
-switch = machine.Pin(4, mode=machine.Pin.IN, pull = machine.Pin.PULL_UP) # inbuilt switch on the rotary encoder, ACTIVE LOW
-outA = machine.Pin(2, mode=machine.Pin.IN) # Pin CLK of encoder
-outB = machine.Pin(3, mode=machine.Pin.IN) # Pin DT of encoder
-ledPin = machine.Pin(25, mode = machine.Pin.OUT, value = 0) # Onboard led on GPIO 25
+switch = Pin(4, mode=Pin.IN, pull = Pin.PULL_UP) # inbuilt switch on the rotary encoder, ACTIVE LOW
+outA = Pin(2, mode=Pin.IN) # Pin CLK of encoder
+outB = Pin(3, mode=Pin.IN) # Pin DT of encoder
+ledPin = Pin(25, mode = Pin.OUT, value = 0) # Onboard led on GPIO 25
 
 
 # define global variables
@@ -265,15 +283,15 @@ outA_last = outA.value() # lastStateCLK
 
 
 # attach interrupt to the outA pin ( CLK pin of encoder module )
-outA.irq(trigger = machine.Pin.IRQ_RISING | machine.Pin.IRQ_FALLING,
+outA.irq(trigger = Pin.IRQ_RISING | Pin.IRQ_FALLING,
               handler = encoder)
 
 # attach interrupt to the outB pin ( DT pin of encoder module )
-outB.irq(trigger = machine.Pin.IRQ_RISING | machine.Pin.IRQ_FALLING ,
+outB.irq(trigger = Pin.IRQ_RISING | Pin.IRQ_FALLING ,
               handler = encoder)
 
 # attach interrupt to the switch pin ( SW pin of encoder module )
-switch.irq(trigger = machine.Pin.IRQ_FALLING,
+switch.irq(trigger = Pin.IRQ_FALLING,
            handler = button)
 
 # Main Logic
@@ -300,12 +318,19 @@ nochangesince = time.ticks_ms()
 oldcounter=stack[2]
 
 while True:
-    counter=encoder(pin)  
+    counter=encoder(0)  
     displaynum(int(counter))
     if counter!=oldcounter:
         nochangesince = time.ticks_ms()
-    if time.ticks_diff(time.ticks_ms,nochangesince)>3000:
-        print('It has been a while, adjust')
+    timediff = time.ticks_diff(time.ticks_ms(),nochangesince)
+    print(timediff)
+    if timediff>2000:
+        print('It has been a while, adjust?')
+        if counter!=stack[2]:
+            adjust(0)
+        else:
+            print('no')
+    oldcounter=counter
     button_last_state = False # reset button last state to false again ,
                               # totally optional and application dependent,
                               # can also be done from other subroutines
