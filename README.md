@@ -11,9 +11,9 @@ An open-source coffee grinder accessory to aid moving between grind sizes, and r
 
 - A minimal user interface centers around a numeric value for the grind size and a display of that numeric value for the last 3 grinds. 
 
-- Turn the rotary encoder to select a grind number, press to move to that number.
+- Turn the rotary encoder to select a grind number, after a short pause, the grinder adjusts.
 
-- Tare function - long press rotary encoder to zero (there is a visual setpoint to do this at).
+- Tare function - press rotary encoder to zero (there is a visual setpoint on the grinder to do this at present).
 
 # Hardware
 
@@ -43,13 +43,13 @@ The code is saved as `main.py`, so it will automatically run when you power up t
 
 # To Do
 
-- Calibration, perhaps using a precision limit switch
-- Collect additional information
+- Auto-calibration, perhaps using a precision limit switch
+- Collect additional information via UI
 - Stretch goal: Build a grinder from scratch
 
 # Contributing to the Code
 
-If you look at this and feel like you can make it better please fork the repository and use a feature branch. Pull requests are welcome and encouraged.
+This code is very inelegant. If you look at this and feel like you can make it better please fork the repository and use a feature branch. Pull requests are welcome and encouraged.
 
 If you have some coffee expertise that you think could be embedded in the code then raise an issue on GitHub or mail us.
  
