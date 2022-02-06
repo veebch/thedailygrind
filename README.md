@@ -11,7 +11,7 @@ An open-source coffee grinder accessory to aid moving between grind sizes, and r
 
 - A minimal user interface centers around a numeric value for the grind size and a display of that numeric value for the last 3 grinds. 
 
-- Turn the rotary encoder to select a grind number, press to move to that number.
+- Turn the rotary encoder to select a grind number, after a short pause, the grinder adjusts.
 
 - Tare function - press rotary encoder to zero (there is a visual setpoint to do this at).
 
