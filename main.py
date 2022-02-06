@@ -194,7 +194,6 @@ def button(pin):
     global stack
     if button_current_state != button_last_state:
         print("Button is Pressed\n")
-
         number=int(encoder(pin))
         if stack[2]!=number:
             stack.pop(0)
@@ -207,12 +206,10 @@ def button(pin):
                 dir='cw'
             print("Change",change)  
             doaspin(change, dir)
-        time.sleep(.1)
-        
+        time.sleep(.1)        
         file = open ("lastgrinds.txt", "w+")  #writes to file, even if it doesnt exist
         file.write(str(stack))
-        file.close()
-        
+        file.close()       
         button_last_state = button_current_state
     return
 
@@ -251,7 +248,6 @@ def doaspin(offset, direction):
 switch = machine.Pin(4, mode=machine.Pin.IN, pull = machine.Pin.PULL_UP) # inbuilt switch on the rotary encoder, ACTIVE LOW
 outA = machine.Pin(2, mode=machine.Pin.IN) # Pin CLK of encoder
 outB = machine.Pin(3, mode=machine.Pin.IN) # Pin DT of encoder
-
 ledPin = machine.Pin(25, mode = machine.Pin.OUT, value = 0) # Onboard led on GPIO 25
 
 
@@ -300,9 +296,16 @@ except:
     stack.append(0)
     stack.append(0)
 
+nochangesince = time.ticks_ms()
+oldcounter=stack[2]
+
 while True:
     counter=encoder(pin)  
     displaynum(int(counter))
+    if counter!=oldcounter:
+        nochangesince = time.ticks_ms()
+    if time.ticks_diff(time.ticks_ms,nochangesince)>3000:
+        print('It has been a while, adjust')
     button_last_state = False # reset button last state to false again ,
                               # totally optional and application dependent,
                               # can also be done from other subroutines
