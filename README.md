@@ -1,38 +1,58 @@
+
+[![Video](https://img.youtube.com/vi/E5sn0s1Zz4U/0.jpg)](https://www.youtube.com/watch?v=E5sn0s1Zz4U)
+
 [![YouTube Channel Views](https://img.shields.io/youtube/channel/views/UCz5BOU9J9pB_O0B8-rDjCWQ?label=YouTube&style=social)](https://www.youtube.com/channel/UCz5BOU9J9pB_O0B8-rDjCWQ)
 
-**Problem statement:** Moving between grind sizes for different brew methods can be a frustration on some coffee grinders. Remembering where the last grind was, is not always easy.
-
-This is an attempt to smooth out the workflow and an excuse to play with a pi pico microcontroller, which has been on the to-do list for a while. 
+Moving between grind sizes for different brew methods can be a mild frustration on some coffee grinders. Remembering the location of the previous grind is not always easy.
 
 # The Daily Grind
 
-An open-source coffee grinder accessory to aid moving between grind sizes. Connected to a Bezzera BB05, although it should be adaptable to other grinders that use a similar mechanism (stepless adjustment)
+An open-source coffee grinder accessory to aid moving between grind sizes, and recalling recent grinds. Prototyped on a Bezzera BB05, although it should be adaptable to other grinders that use a similar mechanism (stepless adjustment). Units are currently non-dimensional (no units, made up).
+
+- A minimal user interface centers around a numeric value for the grind size and a display of that numeric value for the last 3 grinds. 
+
+- Turn the rotary encoder to select a grind number, press to move to that number.
+
+- Tare function - long press rotary encoder to zero (there is a visual setpoint to do this at).
 
 # Hardware
 
-- SSD1351 OLED
-- Waveshare DC motor board for Pico (jumpers soldered for I2C 1 to avoid screen issues due to pin use)
-- DC motor
-- Rotaty Encoder switch
+- Screen: SSD1351 OLED 128x128 screen
+- Motor Driver: Waveshare DC motor board for Pico (jumpers soldered for I2C 1 to avoid screen issues due to pin use)
+- Motor: [DC motor](https://www.amazon.de/gp/product/B0824V7YGT)
+- Controller: Rotaty Encoder switch
+- [Timing belt and teeth](https://www.amazon.de/gp/product/B09KGJXQ4N)
+- Wires, lots of wires
 
-# Code
+The connection pins for all of the parts interfacing with the Pico are within the code.
 
-The OLED uses micropython-nano-gui and a SSD1351 128x128 screen.
+# Install
 
-A very (very) minimal UX centers around a memory of the last 3 grinds.
+Once you've installed Micropython on the Pico. Clone this repsitory onto your computer:
 
-# Config
+     git clone https://github.com/veebch/thedailygrind
 
-Parameters that can be used for tailoring the code, or applying it to another stepless machine
+and copy the files onto the Pico (connected to your computer via USB):
 
-# Gettings files onto Pico
+     sudo ampy -p /dev/ttyACM0 put ./
 
-     rshell --buffer-size=512 -p /dev/ttyACM0
-     
+
+# Running
+
+The code is saved as `main.py`, so it will automatically run when you power up the Pico.
+
 # To Do
 
-Calibration. Perhaps using a limit switch. 
+- Calibration, perhaps using a precision limit switch
+- Collect additional information
+- Stretch goal: Build a grinder from scratch
 
+# Contributing to the Code
+
+If you look at this and feel like you can make it better please fork the repository and use a feature branch. Pull requests are welcome and encouraged.
+
+If you have some coffee expertise that you think could be embedded in the code then raise an issue on GitHub or mail us.
+ 
 # License 
 
 GPL 3.0
