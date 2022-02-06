@@ -13,7 +13,7 @@ An open-source coffee grinder accessory to aid moving between grind sizes, and r
 
 - Turn the rotary encoder to select a grind number, after a short pause, the grinder adjusts.
 
-- Tare function - press rotary encoder to zero (there is a visual setpoint to do this at).
+- Tare function - press rotary encoder to zero (there is a visual setpoint on the grinder to do this at present).
 
 # Hardware
 
