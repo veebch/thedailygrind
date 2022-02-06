@@ -13,7 +13,7 @@ An open-source coffee grinder accessory to aid moving between grind sizes, and r
 
 - Turn the rotary encoder to select a grind number, press to move to that number.
 
-- Tare function - long press rotary encoder to zero (there is a visual setpoint to do this at).
+- Tare function - press rotary encoder to zero (there is a visual setpoint to do this at).
 
 # Hardware
 
@@ -49,7 +49,7 @@ The code is saved as `main.py`, so it will automatically run when you power up t
 
 # Contributing to the Code
 
-If you look at this and feel like you can make it better please fork the repository and use a feature branch. Pull requests are welcome and encouraged.
+This code is very inelegant. If you look at this and feel like you can make it better please fork the repository and use a feature branch. Pull requests are welcome and encouraged.
 
 If you have some coffee expertise that you think could be embedded in the code then raise an issue on GitHub or mail us.
  
