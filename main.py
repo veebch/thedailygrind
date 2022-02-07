@@ -154,7 +154,7 @@ class MotorDriver():
 
 # interrupt handler function (IRQ) for CLK and DT pins
 def encoder(pin):
-    # get global variables
+    # get global variables, sidenote: global variables cause me deep shame
     global counter
     global direction
     global outA_last
@@ -188,7 +188,7 @@ def encoder(pin):
 
 # interrupt handler function (IRQ) for SW (switch) pin, serves as a Tare function
 def button(pin):
-    # get global variable
+    # get global variables... ew
     global button_last_state
     global button_current_state
     global stack
@@ -210,7 +210,7 @@ def button(pin):
     return
 
 def adjust(pin):
-    # get global variable
+    # get global variables
     global stack
     print("Adjusting\n")
     number=int(encoder(0))
@@ -235,15 +235,18 @@ def displaynum(num):
     global stack
     #This needs to be fast for nice responsive increments
     #100 increments?
-    
-    wri = CWriter(ssd,quantico40, fgcolor=255,bgcolor=0)
-    CWriter.set_textpos(ssd, 20,0)  # verbose = False to suppress console output
+    delta=num-stack[2]
+    text=SSD.rgb(46,255,50)     # Green after adjustment, red until then
+    if abs(delta)!=0:
+        text=SSD.rgb(255,0,0)
+    wri = CWriter(ssd,quantico40,fgcolor=text,bgcolor=0)
+    CWriter.set_textpos(ssd, 20,5)  # verbose = False to suppress console output
     wri.printstring(str(num)+"   ")
-    wrimem = CWriter(ssd,freesans20, fgcolor=255,bgcolor=0)
-    CWriter.set_textpos(ssd, 70,0)  
-    wrimem.printstring('last three:')
-    CWriter.set_textpos(ssd, 100,0)  
-    wrimem.printstring(str(stack)+"    ")
+    wrimem = CWriter(ssd,freesans20, fgcolor=SSD.rgb(255,255,255),bgcolor=0)
+    CWriter.set_textpos(ssd, 75,5)  
+    wrimem.printstring('last 3:')
+    CWriter.set_textpos(ssd, 100,5)  
+    wrimem.printstring(str(stack[::-1])[1:-1]+"    ") #reverses the order of the array and removes brackets
     ssd.show()
     return
 
@@ -295,7 +298,7 @@ switch.irq(trigger = Pin.IRQ_FALLING,
            handler = button)
 
 # Main Logic
-pin=0
+pin=0 # Just a placeholder that needs to be taken out of the code
 stack = []
 
 # Initialise stack from saved values in case power dropped
@@ -325,7 +328,7 @@ while True:
     timediff = time.ticks_diff(time.ticks_ms(),nochangesince)
     print(timediff)
     if timediff>2000:
-        print('It has been a while, adjust?')
+        print('It has been a more than two seconds, adjust?')
         if counter!=stack[2]:
             adjust(0)
         else:
