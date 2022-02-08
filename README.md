@@ -13,7 +13,7 @@ An open-source coffee grinder accessory to aid moving between grind sizes, and r
 
 - Turn the rotary encoder to select a grind number, after a short pause, the grinder adjusts.
 
-- Tare function - press rotary encoder to zero (there is a visual setpoint on the grinder to do this at present).
+- Tare function - press the rotary encoder to zero (there is a visual setpoint on the grinder to do this at present).
 
 # Hardware
 
@@ -22,7 +22,8 @@ An open-source coffee grinder accessory to aid moving between grind sizes, and r
 - Motor: [DC motor](https://www.amazon.de/gp/product/B0824V7YGT)
 - Controller: Rotaty Encoder switch
 - [Timing belt and teeth](https://www.amazon.de/gp/product/B09KGJXQ4N)
-- Wires, lots of wires
+- Wires galore
+- The mechanics of attaching the motor to the adjustment knob is an exercise for the reader
 
 The connection pins for all of the parts interfacing with the Pico are within the code.
 
