@@ -21,7 +21,7 @@ import gc
 # from drivers.ssd1351.ssd1351_generic import SSD1351 as SSD
 
 # STM specific driver
-from drivers.ssd1351.ssd1351 import SSD1351 as SSD
+from drivers.ssd1351.ssd1351_16bit import SSD1351 as SSD
 
 height = 128  # height = 128 # 1.5 inch 128*128 display
 
@@ -266,23 +266,21 @@ def doaspin(offset, direction):
 
 # define encoder pins 
 
-switch = Pin(4, mode=Pin.IN, pull = Pin.PULL_UP) # inbuilt switch on the rotary encoder, ACTIVE LOW
+switch = Pin(4, mode=Pin.IN) # inbuilt switch on the rotary encoder
 outA = Pin(2, mode=Pin.IN) # Pin CLK of encoder
 outB = Pin(3, mode=Pin.IN) # Pin DT of encoder
-ledPin = Pin(25, mode = Pin.OUT, value = 0) # Onboard led on GPIO 25
-
 
 # define global variables
-counter = 0   # counter updates when encoder rotates
-direction = "" # empty string for registering direction change
-outA_last = 0 # registers the last state of outA pin / CLK pin
+counter = 0      # counter updates when encoder rotates
+direction = ""   # empty string for registering direction change
+outA_last = 0    # registers the last state of outA pin / CLK pin
 outA_current = 0 # registers the current state of outA pin / CLK pin
 
 button_last_state = False # initial state of encoder's button 
-button_current_state = "" # empty string ---> current state of button
+button_current_state = None # empty value ---> current state of button
 
 # Read the last state of CLK pin in the initialisaton phase of the program 
-outA_last = outA.value() # lastStateCLK
+outA_last = outA.value()    # lastStateCLK
 
 
 # attach interrupt to the outA pin ( CLK pin of encoder module )
@@ -298,8 +296,8 @@ switch.irq(trigger = Pin.IRQ_FALLING,
            handler = button)
 
 # Main Logic
-pin=0 # Just a placeholder that needs to be taken out of the code
-stack = []
+pin=0 # Just a placeholder that needs to be taken out of the code, encoder seems to get upset when I try to. TODO: fix this
+stack = [] # The array that will hold the last 3 grind values
 
 # Initialise stack from saved values in case power dropped
 try:
@@ -326,9 +324,7 @@ while True:
     if counter!=oldcounter:
         nochangesince = time.ticks_ms()
     timediff = time.ticks_diff(time.ticks_ms(),nochangesince)
-    print(timediff)
-    if timediff>2000:
-        print('It has been a more than two seconds, adjust?')
+    if timediff>2000 and timediff<2500:   # half second window to decide whether to adjust
         if counter!=stack[2]:
             adjust(0)
         else:
@@ -338,4 +334,5 @@ while True:
                               # totally optional and application dependent,
                               # can also be done from other subroutines
                               # or from the main loop
+
 
