@@ -25,7 +25,7 @@ An open-source coffee grinder accessory to aid moving between grind sizes, and r
 - Wires galore
 - The mechanics of attaching the motor to the adjustment knob is an exercise for the reader
 
-The list of connection pins for all of the parts interfacing with the Pico are within the code.
+The list of connection pins for all of the parts interfacing with the Pico are within the `main.py`.
 
 # Install
 
