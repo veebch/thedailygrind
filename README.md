@@ -1,5 +1,5 @@
+![Action Shot](/images/grindthumb.png)
 
-[![Video](https://img.youtube.com/vi/E5sn0s1Zz4U/0.jpg)](https://www.youtube.com/watch?v=E5sn0s1Zz4U)
 
 [![YouTube Channel Views](https://img.shields.io/youtube/channel/views/UCz5BOU9J9pB_O0B8-rDjCWQ?label=YouTube&style=social)](https://www.youtube.com/channel/UCz5BOU9J9pB_O0B8-rDjCWQ)
 
@@ -37,6 +37,7 @@ and copy the files onto the Pico (connected to your computer via USB):
 
      sudo ampy -p /dev/ttyACM0 put ./
 
+# Video
 
 # Running
 
