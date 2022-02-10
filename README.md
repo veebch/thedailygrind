@@ -35,7 +35,7 @@ Once you've installed Micropython on the Pico. Clone this repsitory onto your co
 
 and copy the files onto the Pico (connected to your computer via USB):
 
-     sudo ampy -p /dev/ttyACM0 put ./
+     sudo ampy -p /dev/ttyACM0 put ./ 
 
 # Video
 
