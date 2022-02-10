@@ -39,6 +39,9 @@ and copy the files onto the Pico (connected to your computer via USB):
 
 # Video
 
+[![Mod demo](http://img.youtube.com/vi/1Q8QkiO5C2s/0.jpg)](http://www.youtube.com/watch?v=1Q8QkiO5C2s "Video Title")
+
+
 # Running
 
 The code is saved as `main.py`, so it will automatically run when you power up the Pico.
