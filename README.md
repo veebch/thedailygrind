@@ -58,7 +58,7 @@ and copy the files onto the Pico (connected to your computer via USB):
 
 - The Rotary Encoder connects to th GPIO as follows:
 
-| Pico GPIO | Rotary Encoder |
+| [Pico GPIO](https://www.elektronik-kompendium.de/sites/raspberry-pi/bilder/raspberry-pi-pico-gpio.png) | Rotary Encoder |
 |-----------|----------------|
 |   2       | CLK            |
 |   3       | DT             |
