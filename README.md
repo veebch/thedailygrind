@@ -47,7 +47,7 @@ and copy the files onto the Pico (connected to your computer via USB):
 
 | [Pico GPIO](https://www.elektronik-kompendium.de/sites/raspberry-pi/bilder/raspberry-pi-pico-gpio.png) | OLED |
 |-----------|------|
-|   18       | SCK  |
+|   18       | CLK  |
 |   19       | MOSI  |
 |   16       | MISO  |
 |   20       | DC  |
