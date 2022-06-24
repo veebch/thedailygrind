@@ -13,7 +13,7 @@ An open-source coffee grinder accessory to aid moving between grind sizes, and r
 
 - Turn the rotary encoder to select a grind number, after a short pause, the grinder adjusts.
 
-- Tare function - press the rotary encoder to zero (there is a visual setpoint on the grinder to do this at present).
+- Tare function - press the rotary encoder to zero (there is a visual setpoint on the grinder to do this at present). 
 
 # Hardware
 
@@ -23,11 +23,12 @@ An open-source coffee grinder accessory to aid moving between grind sizes, and r
 - Controller: Rotaty Encoder switch
 - [Timing belt and teeth](https://www.amazon.de/gp/product/B09KGJXQ4N)
 - Wires galore
+- [12V DC power](https://www.amazon.de/gp/product/B001C6FVU0) for the motor
 - The mechanics of attaching the motor to the adjustment knob is an exercise for the reader
 
-The list of connection pins for all of the parts interfacing with the Pico are within the `main.py`.
+The list of connection pins for all of the parts interfacing with the Pico are within the `main.py. 
 
-# Install
+# Install code to the Pico
 
 Once you've installed Micropython on the Pico. Clone this repsitory onto your computer:
 
@@ -35,7 +36,19 @@ Once you've installed Micropython on the Pico. Clone this repsitory onto your co
 
 and copy the files onto the Pico (connected to your computer via USB):
 
-     sudo ampy -p /dev/ttyACM0 put ./ 
+     sudo ampy -p /dev/ttyACM0 put ./
+     
+# Assembling hardware
+
+- Plug the pico into the Waveshare motor driver board
+- Connect the DC motor to A1 and A2 on the driver board
+- Connect 12V DC power to the waveshare driver board (marked 6-12V and GND)
+- The OLED connects to the GPIO as follows:
+
+
+- The Rotary Encoder connects to th GPIO as follows:
+
+
 
 # Video
 
