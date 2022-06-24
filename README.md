@@ -45,7 +45,7 @@ and copy the files onto the Pico (connected to your computer via USB):
 - Connect 12V DC power to the waveshare driver board (marked 6-12V and GND)
 - The OLED connects to the GPIO as follows:
 
-| Pico GPIO | OLED |
+| [Pico GPIO](https://www.elektronik-kompendium.de/sites/raspberry-pi/bilder/raspberry-pi-pico-gpio.png) | OLED |
 |-----------|------|
 |   18       | SCK  |
 |   19       | MOSI  |
