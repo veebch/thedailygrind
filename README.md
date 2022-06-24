@@ -47,7 +47,13 @@ and copy the files onto the Pico (connected to your computer via USB):
 
 | Pico GPIO | OLED |
 |-----------|------|
-|   1       | 2    |
+|   18       | SCK  |
+|   19       | MOSI  |
+|   16       | MISO  |
+|   20       | DC  |
+|   17      | CS  |
+
+
 
 - The Rotary Encoder connects to th GPIO as follows:
 
