@@ -49,8 +49,8 @@ and copy the files onto the Pico (connected to your computer via USB):
 |-----------|------|
 |   19       | DIN/MOSI  |
 |   18      | CLK/SCK  |
-|   20       | DC  |
 |   17      | CS  |
+|   20       | DC  |
 |   21      | RST  |
 
 
