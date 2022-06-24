@@ -52,6 +52,7 @@ and copy the files onto the Pico (connected to your computer via USB):
 |   16       | MISO  |
 |   20       | DC  |
 |   17      | CS  |
+|   21      | RST  |
 
 
 
