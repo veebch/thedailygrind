@@ -40,15 +40,22 @@ and copy the files onto the Pico (connected to your computer via USB):
      
 # Assembling hardware
 
-- Plug the pico into the Waveshare motor driver board
+- Plug the Pico into the Waveshare motor driver board
 - Connect the DC motor to A1 and A2 on the driver board
 - Connect 12V DC power to the waveshare driver board (marked 6-12V and GND)
 - The OLED connects to the GPIO as follows:
 
+| Pico GPIO | OLED |
+|-----------|------|
+|   1       | 2    |
 
 - The Rotary Encoder connects to th GPIO as follows:
 
-
+| Pico GPIO | Rotary Encoder |
+|-----------|----------------|
+|   2       | CLK            |
+|   3       | DT             |
+|   4       | SW             |
 
 # Video
 
