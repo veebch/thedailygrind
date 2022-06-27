@@ -233,6 +233,7 @@ def adjust(pin):
 
 def displaynum(num):
     global stack
+    ssd.fill(0)
     #This needs to be fast for nice responsive increments
     #100 increments?
     delta=num-stack[2]
