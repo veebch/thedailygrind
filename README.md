@@ -26,7 +26,7 @@ An open-source coffee grinder accessory to aid moving between grind sizes, and r
 - [12V DC power](https://www.amazon.de/gp/product/B001C6FVU0) for the motor
 - The mechanics of attaching the motor to the adjustment knob is an exercise for the reader
 
-The list of connection pins for all of the parts interfacing with the Pico are within the `main.py. 
+The list of connection pins for all of the parts interfacing with the Pico are within the `main.py`, there are also tables below. 
 
 # Install code to the Pico
 
