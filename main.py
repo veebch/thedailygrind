@@ -240,10 +240,10 @@ def displaynum(num):
     text=SSD.rgb(46,255,50)     # Green after adjustment, red until then
     if abs(delta)!=0:
         text=SSD.rgb(255,0,0)
-    wri = CWriter(ssd,quantico40,fgcolor=text,bgcolor=0)
+    wri = CWriter(ssd,quantico40,fgcolor=text,bgcolor=0, verbose=False)
     CWriter.set_textpos(ssd, 20,5)  # verbose = False to suppress console output
     wri.printstring(str(num))
-    wrimem = CWriter(ssd,freesans20, fgcolor=SSD.rgb(255,255,255),bgcolor=0)
+    wrimem = CWriter(ssd,freesans20, fgcolor=SSD.rgb(255,255,255),bgcolor=0, verbose=False)
     CWriter.set_textpos(ssd, 75,5)  
     wrimem.printstring('last 3:')
     CWriter.set_textpos(ssd, 100,5)  
@@ -267,7 +267,7 @@ def doaspin(offset, direction):
 
 # define encoder pins 
 
-switch = Pin(4, mode=Pin.IN,Pin.PULL_UP) # inbuilt switch on the rotary encoder
+switch = Pin(4, Pin.IN,Pin.PULL_UP) # inbuilt switch on the rotary encoder
 outA = Pin(2, mode=Pin.IN) # Pin CLK of encoder
 outB = Pin(3, mode=Pin.IN) # Pin DT of encoder
 
@@ -328,12 +328,8 @@ while True:
     if timediff>2000 and timediff<2500:   # half second window to decide whether to adjust
         if counter!=stack[2]:
             adjust(0)
-        else:
-            print('no')
     oldcounter=counter
     button_last_state = False # reset button last state to false again ,
                               # totally optional and application dependent,
                               # can also be done from other subroutines
                               # or from the main loop
-
-
