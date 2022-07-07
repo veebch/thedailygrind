@@ -242,12 +242,12 @@ def displaynum(num):
         text=SSD.rgb(255,0,0)
     wri = CWriter(ssd,quantico40,fgcolor=text,bgcolor=0)
     CWriter.set_textpos(ssd, 20,5)  # verbose = False to suppress console output
-    wri.printstring(str(num)+"   ")
+    wri.printstring(str(num))
     wrimem = CWriter(ssd,freesans20, fgcolor=SSD.rgb(255,255,255),bgcolor=0)
     CWriter.set_textpos(ssd, 75,5)  
     wrimem.printstring('last 3:')
     CWriter.set_textpos(ssd, 100,5)  
-    wrimem.printstring(str(stack[::-1])[1:-1]+"    ") #reverses the order of the array and removes brackets
+    wrimem.printstring(str(stack[::-1])[1:-1]) #reverses the order of the array and removes brackets
     ssd.show()
     return
 
@@ -267,7 +267,7 @@ def doaspin(offset, direction):
 
 # define encoder pins 
 
-switch = Pin(4, mode=Pin.IN) # inbuilt switch on the rotary encoder
+switch = Pin(4, mode=Pin.IN,Pin.PULL_UP) # inbuilt switch on the rotary encoder
 outA = Pin(2, mode=Pin.IN) # Pin CLK of encoder
 outB = Pin(3, mode=Pin.IN) # Pin DT of encoder
 
