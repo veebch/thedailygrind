@@ -15,6 +15,9 @@ import sys
 import time
 import math
 import gc
+import uasyncio as asyncio
+from primitives.pushbutton import Pushbutton
+
 
 # *** Choose your color display driver here ***
 # Driver supporting non-STM platforms
@@ -187,26 +190,22 @@ def encoder(pin):
     
 
 # interrupt handler function (IRQ) for SW (switch) pin, serves as a Tare function
-def button(pin):
+def tare(pin):
     # get global variables... ew
-    global button_last_state
-    global button_current_state
     global stack
     global counter
     global oldcounter 
-    if button_current_state != button_last_state:
-        print("Button is Pressed\n")
-        number=int(encoder(0))
-        if stack[2]!=0:
-            stack.pop(0)
-            stack.append(0)
-            counter = 0
-            oldcounter = 0
-        time.sleep(.1)        
-        file = open ("lastgrinds.txt", "w+")  #writes to file, even if it doesnt exist
-        file.write(str(stack))
-        file.close()       
-        button_last_state = button_current_state
+    print("Button pressed: Tare\n")
+    number=int(encoder(0))
+    if stack[2]!=0:
+        stack.pop(0)
+        stack.append(0)
+        counter = 0
+        oldcounter = 0
+    time.sleep(.1)        
+    file = open ("lastgrinds.txt", "w+")  #writes to file, even if it doesnt exist
+    file.write(str(stack))
+    file.close()       
     return
 
 def adjust(pin):
@@ -266,8 +265,8 @@ def doaspin(offset, direction):
 
 
 # define encoder pins 
-
-switch = Pin(4, Pin.IN,Pin.PULL_UP) # inbuilt switch on the rotary encoder
+btn = Pin(4, Pin.IN, Pin.PULL_UP)  # Adapt for your hardware
+pb = Pushbutton(btn, suppress=True)
 outA = Pin(2, mode=Pin.IN) # Pin CLK of encoder
 outB = Pin(3, mode=Pin.IN) # Pin DT of encoder
 
@@ -292,15 +291,14 @@ outA.irq(trigger = Pin.IRQ_RISING | Pin.IRQ_FALLING,
 outB.irq(trigger = Pin.IRQ_RISING | Pin.IRQ_FALLING ,
               handler = encoder)
 
-# attach interrupt to the switch pin ( SW pin of encoder module )
-switch.irq(trigger = Pin.IRQ_FALLING,
-           handler = button)
 
 # Main Logic
+
+
 pin=0 # Just a placeholder that needs to be taken out of the code, encoder seems to get upset when I try to. TODO: fix this
 stack = [] # The array that will hold the last 3 grind values
 
-# Initialise stack from saved values in case power dropped
+# Initialise stack from saved values
 try:
     file = open ("lastgrinds.txt", "r+")
     stackstr = file.read()
@@ -316,20 +314,22 @@ except:
     stack.append(0)
     stack.append(0)
 
-nochangesince = time.ticks_ms()
-oldcounter=stack[2]
-
-while True:
-    counter=encoder(0)  
-    displaynum(int(counter))
-    if counter!=oldcounter:
-        nochangesince = time.ticks_ms()
-    timediff = time.ticks_diff(time.ticks_ms(),nochangesince)
-    if timediff>2000 and timediff<2500:   # half second window to decide whether to adjust
-        if counter!=stack[2]:
-            adjust(0)
-    oldcounter=counter
-    button_last_state = False # reset button last state to false again ,
-                              # totally optional and application dependent,
-                              # can also be done from other subroutines
-                              # or from the main loop
+async def main(stack):
+    oldcounter=stack[2]
+    nochangesince = time.ticks_ms()
+    short_press = pb.release_func(tare, (Pin,))
+    double_press = pb.double_func(print, ("DOUBLE",))
+    long_press = pb.long_func(print, ("LONG",))  # Some kind of history plot?
+    while True:
+        counter=encoder(0)  
+        displaynum(int(counter))
+        if counter!=oldcounter:
+            nochangesince = time.ticks_ms()
+        timediff = time.ticks_diff(time.ticks_ms(),nochangesince)
+        if timediff>2000 and timediff<2500:   # Wait for 2 seconds of no dial change before adjusting
+             if counter!=stack[2]:
+                 adjust(0)
+        oldcounter=counter
+        await asyncio.sleep(.01)
+        
+asyncio.run(main(stack))
