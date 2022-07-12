@@ -263,6 +263,11 @@ def doaspin(offset, direction):
         m.MotorRun('MA', 'backward', speed,runfor)
     return
 
+def lastgrind():
+    global counter
+    counter=stack[1]
+    return
+
 
 # define encoder pins 
 btn = Pin(4, Pin.IN, Pin.PULL_UP)  # Adapt for your hardware
@@ -317,16 +322,16 @@ except:
 async def main(stack):
     oldcounter=stack[2]
     nochangesince = time.ticks_ms()
-    short_press = pb.release_func(tare, (Pin,))
+    short_press = pb.release_func(lastgrind, ())
     double_press = pb.double_func(print, ("DOUBLE",))
-    long_press = pb.long_func(print, ("LONG",))  # Some kind of history plot?
+    long_press = pb.long_func(tare, (Pin,))  # Some kind of history plot?
     while True:
         counter=encoder(0)  
         displaynum(int(counter))
         if counter!=oldcounter:
             nochangesince = time.ticks_ms()
         timediff = time.ticks_diff(time.ticks_ms(),nochangesince)
-        if timediff>2000 and timediff<2500:   # Wait for 2 seconds of no dial change before adjusting
+        if timediff>2000 and timediff<2500:   # Wait for 2 seconds of no change before adjusting
              if counter!=stack[2]:
                  adjust(0)
         oldcounter=counter
