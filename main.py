@@ -153,7 +153,28 @@ class MotorDriver():
     def MotorStop(self, motor):
         mPin = self.MotorPin.index(motor)
         self.pwm.setServoPulse(self.MotorPin[mPin+1], 0)
-        
+
+def advice():
+    ssd.fill(0)
+    print("Giving Advice")
+    wri = CWriter(ssd,freesans20, fgcolor=SSD.rgb(50,50,0),bgcolor=0, verbose=False )
+    CWriter.set_textpos(ssd, 90,25)
+    wri.printstring('veeb.ch/')
+    ssd.show()
+    time.sleep(.3)
+    for x in range(11):
+        wri = CWriter(ssd,freesans20, fgcolor=SSD.rgb(25*x,25*x,25*x),bgcolor=0, verbose=False)
+        CWriter.set_textpos(ssd, 25,25)
+        wri.printstring("grind")
+        wri = CWriter(ssd,freesans20, fgcolor=SSD.rgb(25*x,25*x,25*x),bgcolor=0, verbose=False)
+        CWriter.set_textpos(ssd, 55,25)
+        wri.printstring("finer")
+        wri = CWriter(ssd,freesans20, fgcolor=SSD.rgb(50-x,50-x,0),bgcolor=0, verbose=False )
+        CWriter.set_textpos(ssd, 90,25)
+        wri.printstring('veeb.ch/')
+        ssd.show()
+    time.sleep(.5)
+    return
 
 # interrupt handler function (IRQ) for CLK and DT pins
 def encoder(pin):
@@ -324,7 +345,7 @@ async def main(stack):
     oldcounter=stack[2]
     nochangesince = time.ticks_ms()
     short_press = pb.release_func(lastgrind, ())
-    double_press = pb.double_func(print, ("DOUBLE",))
+    double_press = pb.double_func(advice, ())
     long_press = pb.long_func(tare, (Pin,))  # Some kind of history plot?
     while True:
         counter=encoder(0)  
