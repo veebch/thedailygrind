@@ -266,6 +266,7 @@ def doaspin(offset, direction):
 def lastgrind():
     global counter
     counter=stack[1]
+    displaynum(int(counter))
     return
 
 
