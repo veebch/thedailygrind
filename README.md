@@ -15,7 +15,7 @@ An open-source coffee grinder accessory to aid moving between grind sizes, and r
 
 - Go to the previous grind setting (handy for switching between brew methods) - short-press of rotary encoder.
 
-- Tare function - long press the rotary encoder to zero (there is a visual setpoint on the grinder to do this at present). 
+- Tare function - long press the rotary encoder to zero the counter at a grind size (there is a visual setpoint on the grinder to do this at present). 
 
 # Hardware
 
