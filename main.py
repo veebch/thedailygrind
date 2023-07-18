@@ -1,10 +1,27 @@
-# main.py Script for grinder UI
-# first prototype is using an OLED and 5V stepper motor
-# the display relies on drivers made by Peter Hinch [link]
 
-# Released under the GPL 3.0
+"""
+  main.py - Script for grinder UI, running using a Raspberry Pi Pico
+  The display uses drivers made by Peter Hinch [link](https://github.com/peterhinch/micropython-nano-gui)
+  Tested on pico running Pimoroni uf2 pimoroni-pico-v1.19.0-micropython.uf2
+    
+     Copyright (C) 2023 Veeb Projects https://veeb.ch
 
-# Fonts for Writer
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>
+
+    # Fonts for Writer (generated using https://github.com/peterhinch/micropython-font-to-py)
+"""
+
 import gui.fonts.freesans20 as freesans20
 import gui.fonts.quantico40 as quantico40
 from gui.core.writer import CWriter
